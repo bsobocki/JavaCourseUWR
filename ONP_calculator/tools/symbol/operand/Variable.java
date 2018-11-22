@@ -18,11 +18,9 @@ public class Variable extends Symbol {
         else
             throw new ONP_WrongVarableName();
     }
-
     public String getName() {
         return this.name;
     }
-
     @Override
     public double calc() throws ONP_Exception {
         return 0;
