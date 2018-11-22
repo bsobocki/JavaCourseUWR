@@ -8,6 +8,7 @@ import tools.symbol.Symbol;
 import tools.symbol.function.Function;
 import tools.symbol.operand.Variable;
 
+/**add a variable to the environment*/
 public class Assign extends Function {
     Variable arg1;
     Symbol arg2;
@@ -18,19 +19,16 @@ public class Assign extends Function {
         set.add(arg1.getName(),arg2.calc());
         return  set;
     }
-
     private void check() throws ONP_Exception {
         if (arg2==null || arg1==null)
             throw new ONP_ArgumentDoesNotExist();
     }
-
     public void addArg1(Variable arg) throws ONP_Exception{
         if(arg1==null)
             this.arg1 = arg;
         else
             throw new ONP_TooManyArguments();
     }
-
     @Override
     public void addArg(Symbol arg) throws ONP_Exception{
         if(arg2==null)
@@ -38,17 +36,14 @@ public class Assign extends Function {
         else
             throw new ONP_TooManyArguments();
     }
-
     @Override
     public double calc() throws ONP_Exception {
         return 0;
     }
-
     @Override
     public int numberOfArgs() {
         return 2;
     }
-
     @Override
     public int missingArgs() {
         return 2 - numberOfArgs;
