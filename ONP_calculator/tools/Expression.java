@@ -12,35 +12,43 @@ import tools.symbol.operand.Number;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**a class that storages an expression*/
 public class Expression {
-    //collections necessary to calculate
-    //private ONP_Queue queue;
-    //private ONP_Stack stack;
+    /**collections necessary to calculate*/
+    //private ONP_Queue queue;  //need to calculate in difffrent way 
+    //private ONP_Stack stack;  //than mine
     public ONP_Set set;
     private ONP_List expr;
 
+    /**constructors*/
     public Expression() throws ONP_Exception{
         //queue = new ONP_Queue();
         //stack = new ONP_Stack();
         set = new ONP_Set();
         expr = new ONP_List();
     }
-
     public Expression(String onp) throws ONP_Exception{
+        //queue = new ONP_Queue();
+        //stack = new ONP_Stack();
+        set = new ONP_Set();
+        expr = new ONP_List();
         setExpression(onp);
     }
-
     public void setExpression(String onp) throws ONP_Exception {
         expr = onp_symbols_prefix(onp);
     }
 
+    /**method creates ONP_List which storages an prefix expressioin*/
     public static ONP_List onp_symbols_prefix(String str){
+        /**to build an single symbol*/
         String temp = "";
+        /**to build an postfix expression and reverse it*/
         ArrayList<String> arrayList = new ArrayList<>();
+        /**string to char array*/
         char[] charArray = str.toCharArray();
         ONP_List k = new ONP_List();
 
+        /**add symbols to arrayList*/
         for(char x: charArray){
             if(x != ' ' && x != '\n'){
                 temp+=x;
@@ -50,34 +58,35 @@ public class Expression {
                 temp = "";
             }
         }
+        /**add last symbol*/
         if(charArray.length!=0)
             if(charArray[str.length()-1]!=' ')
                 arrayList.add(temp);
-
+        
         Collections.reverse(arrayList);
 
+        /**make prefix expression to calculate*/
         for(String x: arrayList){
             k.add(x);
         }
-
         return k;
     }
 
-    //build a tree-expression from prefix
+    /**build a tree-expression from prefix*/
     public Symbol build() throws ONP_Exception{
         if(!expr.isEmpty()) {
             String x = expr.remove();
-            //number
+            /**number*/
             if (x.toCharArray()[0] >= '0' && x.toCharArray()[0] <= '9')
                 return new Number(Double.parseDouble(x));
-                //constant
+                /**constant*/
             else if (x.equals("e"))
                 return new E();
             else if (x.equals("pi"))
                 return new Pi();
             else if (x.equals("phi"))
                 return new Phi();
-                //function 1-arg
+                /**function 1-arg*/
             else if (x.equals("abs")) {
                 Abs abs = new Abs();
                 abs.addArg(build());
@@ -115,7 +124,7 @@ public class Expression {
                 abs.addArg(build());
                 return abs;
             }
-            //function 2-args
+            /**function 2-args*/
             else if (x.equals("+")) {
                 Plus abs = new Plus();
                 abs.addArg(build());
@@ -157,7 +166,7 @@ public class Expression {
                 abs.addArg(build());
                 return abs;
             }
-            //assign
+            /**assign*/
             else if (x.equals("=")) {
                 Assign a = new Assign();
                 a.addArg1(new Variable(expr.remove()));
@@ -169,10 +178,11 @@ public class Expression {
                 return new Number(set.get(x));
         }
         else
-            //normal tree ends on leaves (constant or numbers)
+            /**normal tree ends on leaves (constant or numbers)*/
             throw new ONP_WrongExpression();
     }
 
+    /**calculate expression*/
     public double calculate(){
         Symbol x = build();
         return x.calc();
