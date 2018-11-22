@@ -13,17 +13,14 @@ public abstract class OneArg extends Function {
         if (arg==null)
             throw new ONP_ArgumentDoesNotExist();
     }
-
     @Override
     public int numberOfArgs() {
         return numOfArgs;
     }
-
     @Override
     public int missingArgs() {
         return 1 - numOfArgs;
     }
-
     @Override
     public void addArg(Symbol arg) throws ONP_Exception {
         if(this.arg==null)
