@@ -8,11 +8,9 @@ public class Number extends Operand {
     public Number(double val){
         this.val = val;
     }
-
     public double getVal() {
         return val;
     }
-
     @Override
     public double calc() throws ONP_Exception {
         return val;
