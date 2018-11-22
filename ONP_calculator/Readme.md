@@ -56,4 +56,4 @@ If you want to:
     ```
     exit
     ```
-    This command ends program.
+    This command ends the program.
