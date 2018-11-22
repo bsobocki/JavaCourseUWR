@@ -8,11 +8,9 @@ public class ONP_List {
     public ONP_List(){
         list = new LinkedList<>();
     }
-
     public void add(String elem){
         list.add(elem);
     }
-
     public String remove(){
         return list.remove();
     }
