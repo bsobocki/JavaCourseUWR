@@ -51,7 +51,7 @@ If you want to:
     ```
     clear x y
     ```
-    will delete variables x and y from the environment.
+    will delete variables `x` and `y` from the environment.
   * exit, write:
     ```
     exit
