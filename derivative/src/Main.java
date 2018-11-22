@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by Leszek on 2018-03-29.
  */
-public class Pochodne {
+public class Main {
 
     public static void main(String [] args ) {
 
