@@ -12,7 +12,6 @@ public class ONP_Set {
     public ONP_Set(){
         set = new TreeMap<>();
     }
-
     public void add(String name, Double val){
         set.put(name,val);
     }
@@ -31,6 +30,5 @@ public class ONP_Set {
         for(String key:set.keySet()){
             System.out.println(key+" -> "+set.get(key));
         }
-
     }
 }
