@@ -4,45 +4,45 @@ import java.io.*;
  * Created by Bartosz Sobocki on 2018-04-04.
  */
 
-public class Serializacja {
+public class Serialize {
     public static void main(String[]args) throws IOException, ClassNotFoundException {
 
-        System.out.println("Listy :");
+        System.out.println("Lists :");
 
-        Kolekcja<Integer> kol = new Kolekcja<>();
-        Kolekcja<String> kol2 = new Kolekcja<>();
+        Coll<Integer> kol = new Coll<>();
+        Coll<String> kol2 = new Coll<>();
 
         for(int i=0;i<=5; i++)
-            kol.DodajNaPoczatek(i);
+            kol.addAtBeginning(i);
 
         String a = "k";
         for (int i=0; i<=5; i++)
-            kol2.DodajNaKoniec(a + Integer.toString(i));
+            kol2.addAtEnd(a + Integer.toString(i));
 
-        kol.wypisz();
+        kol.write();
         System.out.println();
-        kol2.wypisz();
+        kol2.write();
         System.out.println();
 
-        System.out.println("Serializacja \n");
+        System.out.println("Serialize \n");
         ObjectOutputStream output = new ObjectOutputStream( new BufferedOutputStream( new FileOutputStream("plik.ser")));
 
-        output.writeObject("Listy :");
+        output.writeObject("Lists :");
         output.writeObject(kol);
         output.writeObject(kol2);
         output.close();
 
-        System.out.println("Deserializacja \n");
+        System.out.println("DeSerialize \n");
         ObjectInputStream input = new ObjectInputStream( new BufferedInputStream( new FileInputStream("plik.ser")));
 
 
         System.out.println(input.readObject());
         System.out.println();
 
-        Kolekcja<Integer> i = (Kolekcja<Integer>)input.readObject();
-        i.wypisz();
+        Coll<Integer> i = (Coll<Integer>)input.readObject();
+        i.write();
         System.out.println();
-        i = (Kolekcja<Integer>)input.readObject();
-        i.wypisz();
+        i = (Coll<Integer>)input.readObject();
+        i.write();
     }
 }
