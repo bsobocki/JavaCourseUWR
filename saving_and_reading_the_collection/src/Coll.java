@@ -8,12 +8,24 @@ public class Coll<T> implements Serializable {
 
     public Element<T> last;
     public Element<T> first;
+    
+    class Element<T> implements Serializable{
+
+        public T object;
+        public Element<T> next;
+        public Element<T> prev;
+
+        public Element (T object){
+            this.object = object;
+            this.next = null;
+            this.prev = null;
+        }
+    }
 
     public Coll() {
         this.first = null;
         this.last  = null;
     }
-
     public void addAtEnd (T arg) {
         Element<T> element = new Element<T>(arg);
         if(this.first == null) {
@@ -26,7 +38,6 @@ public class Coll<T> implements Serializable {
             this.last = element;
         }
     }
-
     public void addAtBeginning(T arg){
         Element<T> element = new Element<T>(arg);
         if(this.first == null) {
@@ -39,7 +50,6 @@ public class Coll<T> implements Serializable {
             this.first = element;
         }
     }
-
     public Element<T> deeleteFromEnd(){
         if(first!=null){
             if(first.next!=null){
@@ -58,7 +68,6 @@ public class Coll<T> implements Serializable {
         System.out.println("Empty list!");
         return null;
     }
-
     public Element<T> deleteFromBeginning(){
         if(first!=null){
             if(this.first.next!=null){
@@ -77,13 +86,11 @@ public class Coll<T> implements Serializable {
         System.out.println("Empty list!");
         return null;
     }
-
     public boolean isEmpty(){
         if(first == null)
             return true;
         return false;
     }
-
     public void write()
     {
         if(!isEmpty()){
@@ -96,21 +103,6 @@ public class Coll<T> implements Serializable {
         }
         else
             System.out.println("Empty list!");
-    }
-
-    /** ------ */
-
-    class Element<T> implements Serializable{
-
-        public T object;
-        public Element<T> next;
-        public Element<T> prev;
-
-        public Element (T object){
-            this.object = object;
-            this.next = null;
-            this.prev = null;
-        }
     }
 }
 
