@@ -7,8 +7,8 @@ Some Excercises from java language course made by Paweł Rzechonek at Wroclaw Un
 
 - basic language constructs in java (data types, literals, variable declarations, arrays, operators and expressions)
 - classes and objects
-- reduction, polymorphism (virtual functions);
-- abstract classes, interfaces;
+- reduction, polymorphism (virtual functions)
+- abstract classes, interfaces
 - exceptions and assertions
 - swing graphic interface with AWT elements
 - stream and file operations
